@@ -6,11 +6,7 @@ if (navToggle) {
   navToggle.addEventListener('click', () => {
     const expanded = navToggle.getAttribute('aria-expanded') === 'true';
     navToggle.setAttribute('aria-expanded', String(!expanded));
-    if (expanded) {
-      mobileMenu.hidden = true;
-    } else {
-      mobileMenu.hidden = false;
-    }
+    mobileMenu.hidden = expanded;
   });
 }
 
@@ -24,6 +20,7 @@ class Carousel {
     this.nextBtn = root.querySelector('.carousel-btn.next');
     this.dotContainer = root.querySelector('.carousel-dots');
     this.index = 0;
+    this.pause = false;
     this.setupDots();
     this.update();
     this.attachEvents();
@@ -44,8 +41,7 @@ class Carousel {
     this.prevBtn.addEventListener('click', () => this.prev());
     this.nextBtn.addEventListener('click', () => this.next());
     // Swipe support
-    let startX = 0;
-    let delta = 0;
+    let startX = 0; let delta = 0;
     this.track.addEventListener('pointerdown', e => {
       startX = e.clientX; delta = 0;
       this.track.setPointerCapture(e.pointerId);
@@ -61,7 +57,7 @@ class Carousel {
       }
       startX = 0;
     });
-    // Pause auto rotate on hover
+    // Pause rotate
     this.root.addEventListener('mouseenter', () => this.pause = true);
     this.root.addEventListener('mouseleave', () => this.pause = false);
   }
@@ -90,15 +86,14 @@ class Carousel {
 
 document.querySelectorAll('.carousel').forEach(c => new Carousel(c));
 
-// Form progressive enhancement (optional client feedback)
+// Form enhancement (optional AJAX feel)
 const form = document.querySelector('form[name="booking"]');
 if (form) {
   form.addEventListener('submit', async e => {
     const status = form.querySelector('.form-status');
     if (!status) return;
     status.textContent = 'Submitting...';
-    // Netlify will handle actual submission (no JS required), but we can intercept for SPA feel.
-    // Comment out next two lines to allow normal Netlify redirect behavior.
+    // Prevent default to show inline success (remove to allow Netlify redirect)
     e.preventDefault();
     try {
       const data = new FormData(form);
@@ -121,3 +116,16 @@ if (form) {
 
 // Dynamic year
 document.getElementById('year').textContent = new Date().getFullYear();
+
+// Optional LQIP fade-in if you mark images with data-lqip (you can add data-lqip manually or adapt blur placeholders)
+document.querySelectorAll('img').forEach(img => {
+  // If you implement blur-up with an initial tiny placeholder, add data-lqip attribute in HTML
+  if (img.hasAttribute('data-lqip')) {
+    if (img.complete) {
+      requestAnimationFrame(() => img.classList.add('loaded'));
+    } else {
+      img.addEventListener('load', () => img.classList.add('loaded'), { once:true });
+      img.addEventListener('error', () => img.classList.add('loaded'), { once:true });
+    }
+  }
+});
