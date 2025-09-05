@@ -2,16 +2,58 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Luxury Modern Home | 742 Evergreen Terrace</title>
+  <title>Modern Luxury Home | 742 Evergreen Terrace</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="Schedule a viewing for this stunning 4 bed, 3.5 bath modern home featuring open-concept living, chef's kitchen, and panoramic garden views." />
-  <meta property="og:title" content="Luxury Modern Home for Sale" />
+  <meta name="description" content="Schedule a viewing for this stunning 4 bed, 3.5 bath modern luxury home featuring chef’s kitchen, indoor-outdoor living, and spa suite." />
+  <meta property="og:title" content="Modern Luxury Home for Sale" />
   <meta property="og:description" content="Book a viewing today. 4 Bed · 3.5 Bath · 3,200 sq ft" />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="https://your-domain.com/images/hero-1.jpg" />
+  <meta property="og:image" content="https://your-domain.com/images/hero-front-day-1200.jpg" />
   <meta property="og:url" content="https://your-domain.com/" />
-  <link rel="preload" as="image" href="images/hero-1.jpg" />
+  <link rel="preload" as="image" href="images/hero-front-day-1200.jpg" imagesrcset="
+      images/hero-front-day-800.jpg 800w,
+      images/hero-front-day-1200.jpg 1200w,
+      images/hero-front-day-1600.jpg 1600w" imagesizes="(max-width: 860px) 100vw, 50vw">
   <link rel="stylesheet" href="styles.css" />
+  <!-- Optional Structured Data (uncomment & adjust domain) -->
+  <!--
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SingleFamilyResidence",
+    "name": "Modern Luxury Home",
+    "image": [
+      "https://your-domain.com/images/hero-front-day-1200.jpg",
+      "https://your-domain.com/images/living-room-open-plan-1200.jpg",
+      "https://your-domain.com/images/kitchen-chef-island-1200.jpg"
+    ],
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "742 Evergreen Terrace",
+      "addressLocality": "Springfield",
+      "addressRegion": "IL",
+      "postalCode": "62704"
+    },
+    "numberOfRooms": 8,
+    "floorSize": {
+      "@type": "QuantitativeValue",
+      "value": 3200,
+      "unitCode": "FTK"
+    },
+    "amenityFeature": [
+      {"@type":"LocationFeatureSpecification","name":"Chef Kitchen"},
+      {"@type":"LocationFeatureSpecification","name":"Solar Ready"},
+      {"@type":"LocationFeatureSpecification","name":"EV Charger"}
+    ],
+    "offers": {
+      "@type": "Offer",
+      "price": "1250000",
+      "priceCurrency": "USD",
+      "availability": "https://schema.org/InStock"
+    }
+  }
+  </script>
+  -->
 </head>
 <body>
   <header class="site-header">
@@ -25,7 +67,7 @@
         <a href="#highlights">Highlights</a>
         <a href="#contact">Book Viewing</a>
       </nav>
-      <button class="mobile-nav-toggle" aria-expanded="false" aria-controls="mobile-menu">☰</button>
+      <button class="mobile-nav-toggle" aria-expanded="false" aria-controls="mobile-menu" aria-label="Toggle navigation">☰</button>
     </div>
     <nav id="mobile-menu" class="mobile-menu" hidden>
       <a href="#photos">Photos</a>
@@ -35,12 +77,38 @@
   </header>
 
   <main>
-    <!-- Hero -->
-    <section class="hero">
+    <!-- HERO -->
+    <section class="hero" id="hero">
       <div class="hero-media">
         <picture>
-          <source srcset="images/hero-1.jpg" type="image/jpeg" />
-          <img src="images/hero-1.jpg" alt="Front exterior of the modern luxury home with landscaped entrance" />
+          <!-- AVIF -->
+            <source
+              type="image/avif"
+              srcset="
+                images/hero-front-day-800.avif 800w,
+                images/hero-front-day-1200.avif 1200w,
+                images/hero-front-day-1600.avif 1600w"
+              sizes="(max-width: 860px) 100vw, 50vw">
+          <!-- WebP -->
+          <source
+            type="image/webp"
+            srcset="
+              images/hero-front-day-800.webp 800w,
+              images/hero-front-day-1200.webp 1200w,
+              images/hero-front-day-1600.webp 1600w"
+            sizes="(max-width: 860px) 100vw, 50vw">
+          <!-- JPEG fallback -->
+          <img
+            src="images/hero-front-day-1600.jpg"
+            srcset="
+              images/hero-front-day-800.jpg 800w,
+              images/hero-front-day-1200.jpg 1200w,
+              images/hero-front-day-1600.jpg 1600w"
+            sizes="(max-width: 860px) 100vw, 50vw"
+            alt="Modern two‑story contemporary home front elevation at sunset with warm exterior lighting"
+            class="hero-img"
+            fetchpriority="high"
+            decoding="async">
         </picture>
       </div>
       <div class="hero-content">
@@ -48,7 +116,7 @@
         <p class="property-location">742 Evergreen Terrace, Springfield</p>
         <div class="price-line">
           <span class="price">$1,250,000</span>
-          <span class="status-pill">For Sale</span>
+            <span class="status-pill">For Sale</span>
         </div>
         <ul class="quick-stats" aria-label="Property quick facts">
           <li><strong>4</strong> Beds</li>
@@ -76,7 +144,7 @@
             <h3>Indoor / Outdoor</h3>
             <p>Sliding glass wall opens to landscaped entertaining patio.</p>
           </div>
-            <div class="feature-card">
+          <div class="feature-card">
             <div class="icon">⚡</div>
             <h3>Smart & Efficient</h3>
             <p>Solar, EV charger, zoned HVAC, whole‑home automation.</p>
@@ -90,26 +158,46 @@
       </div>
     </section>
 
-    <!-- Photo Carousel -->
+    <!-- Gallery / Carousel -->
     <section id="photos" class="carousel-section">
       <div class="wrap">
         <h2>Gallery</h2>
         <div class="carousel" aria-roledescription="carousel">
           <div class="carousel-track">
             <div class="slide current">
-              <img src="images/hero-1.jpg" alt="Front exterior perspective at sunset">
+              <picture>
+                <source type="image/avif" srcset="images/hero-front-day-1600.avif">
+                <source type="image/webp" srcset="images/hero-front-day-1600.webp">
+                <img src="images/hero-front-day-1600.jpg" alt="Contemporary home exterior at sunset with illuminated pathway" loading="lazy" decoding="async">
+              </picture>
             </div>
             <div class="slide">
-              <img src="images/living-room.jpg" alt="Open concept living room with large windows">
+              <picture>
+                <source type="image/avif" srcset="images/living-room-open-plan-1600.avif">
+                <source type="image/webp" srcset="images/living-room-open-plan-1600.webp">
+                <img src="images/living-room-open-plan-1600.jpg" alt="Open concept living room with floor-to-ceiling windows and neutral decor" loading="lazy" decoding="async">
+              </picture>
             </div>
             <div class="slide">
-              <img src="images/kitchen.jpg" alt="Modern kitchen with large island and pendant lighting">
+              <picture>
+                <source type="image/avif" srcset="images/kitchen-chef-island-1600.avif">
+                <source type="image/webp" srcset="images/kitchen-chef-island-1600.webp">
+                <img src="images/kitchen-chef-island-1600.jpg" alt="Gourmet kitchen featuring a large quartz island and pendant lighting" loading="lazy" decoding="async">
+              </picture>
             </div>
             <div class="slide">
-              <img src="images/master-bedroom.jpg" alt="Spacious master bedroom with natural light">
+              <picture>
+                <source type="image/avif" srcset="images/primary-bedroom-suite-1600.avif">
+                <source type="image/webp" srcset="images/primary-bedroom-suite-1600.webp">
+                <img src="images/primary-bedroom-suite-1600.jpg" alt="Spacious primary bedroom suite with upholstered bed and large window" loading="lazy" decoding="async">
+              </picture>
             </div>
             <div class="slide">
-              <img src="images/backyard.jpg" alt="Backyard patio with seating and greenery">
+              <picture>
+                <source type="image/avif" srcset="images/backyard-entertaining-1600.avif">
+                <source type="image/webp" srcset="images/backyard-entertaining-1600.webp">
+                <img src="images/backyard-entertaining-1600.jpg" alt="Backyard entertaining patio with seating area and landscaping" loading="lazy" decoding="async">
+              </picture>
             </div>
           </div>
           <button class="carousel-btn prev" aria-label="Previous image">‹</button>
@@ -145,7 +233,7 @@
             <label for="email">Email *</label>
             <input id="email" type="email" name="email" required autocomplete="email" />
           </div>
-            <div class="field">
+          <div class="field">
             <label for="phone">Phone *</label>
             <input id="phone" name="phone" required autocomplete="tel" />
           </div>
@@ -153,7 +241,7 @@
             <label for="date">Preferred Date</label>
             <input id="date" type="date" name="preferred_date" />
           </div>
-          <div class="field">
+            <div class="field">
             <label for="message">Questions / Notes</label>
             <textarea id="message" name="message" rows="4" placeholder="Any specific interests or timing?"></textarea>
           </div>
@@ -163,11 +251,11 @@
       </div>
     </section>
 
-    <!-- Map / Embedded (optional placeholder) -->
+    <!-- Map Placeholder -->
     <section class="map-placeholder">
       <div class="wrap">
         <h2>Location</h2>
-        <div class="map-box" role="img" aria-label="Map placeholder - replace with an embedded map">
+        <div class="map-box" role="img" aria-label="Map placeholder - replace with embedded map">
           <p>Map Placeholder (Embed Google Maps / Leaflet later)</p>
         </div>
       </div>
