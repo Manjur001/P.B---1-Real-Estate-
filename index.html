@@ -57,7 +57,8 @@
         import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
         import { getFirestore, doc, getDoc, addDoc, onSnapshot, collection, query, where, getDocs, orderBy, limit, setLogLevel } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-        // Global variables provided by the Canvas environment
+        // Global variables provided by the Canvas environment.
+        // You can replace these with your own Firebase project configuration if needed.
         const __app_id = typeof window.__app_id !== 'undefined' ? window.__app_id : 'default-app-id';
         const __firebase_config = typeof window.__firebase_config !== 'undefined' ? window.__firebase_config : '{}';
         const __initial_auth_token = typeof window.__initial_auth_token !== 'undefined' ? window.__initial_auth_token : null;
@@ -82,38 +83,86 @@
             }
         }
 
+        // Mock data to display if no properties are found in the database.
+        const MOCK_PROPERTY = {
+            title: "Stunning Modern Villa with Ocean View",
+            description: "A breathtaking villa designed for modern living. Features open-plan spaces, floor-to-ceiling windows, and smart home technology. Perfect for those who appreciate luxury and tranquility.",
+            price: 2750000,
+            address: "123 Oceanfront Drive, Malibu, CA",
+            bedrooms: 4,
+            bathrooms: 4,
+            square_feet: 4200,
+            property_type: "villa",
+            images: [
+                "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2075&q=80",
+                "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?ixlib=rb-4.0.3&auto=format&fit=crop&w=2075&q=80",
+                "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=2075&q=80",
+                "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2075&q=80",
+                "https://images.unsplash.com/photo-1600607687644-c7171b42498b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2075&q=80"
+            ],
+            features: [
+                "Pool",
+                "Gym",
+                "Wifi",
+                "Garden",
+                "Security",
+                "Garage"
+            ],
+            is_featured: true,
+            id: "mock_property_1"
+        };
+
+
         // Data entities
         class Property {
             static async list(order = "-created_at", limitCount = 10) {
-                const propertiesCol = collection(db, `artifacts/${__app_id}/public/data/properties`);
-                const q = query(propertiesCol, orderBy(order), limit(limitCount));
-                const snapshot = await getDocs(q);
-                return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+                try {
+                    const propertiesCol = collection(db, `artifacts/${__app_id}/public/data/properties`);
+                    const q = query(propertiesCol, orderBy(order), limit(limitCount));
+                    const snapshot = await getDocs(q);
+                    const properties = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+                    return properties.length > 0 ? properties : [MOCK_PROPERTY];
+                } catch (error) {
+                    console.error("Error fetching properties from Firestore:", error);
+                    return [MOCK_PROPERTY];
+                }
             }
 
             static async filter(filters, order = "-created_at", limitCount = 10) {
-                const propertiesCol = collection(db, `artifacts/${__app_id}/public/data/properties`);
-                let q = query(propertiesCol);
+                try {
+                    const propertiesCol = collection(db, `artifacts/${__app_id}/public/data/properties`);
+                    let q = query(propertiesCol);
 
-                for (const key in filters) {
-                    if (Object.prototype.hasOwnProperty.call(filters, key)) {
-                        q = query(q, where(key, "==", filters[key]));
+                    for (const key in filters) {
+                        if (Object.prototype.hasOwnProperty.call(filters, key)) {
+                            q = query(q, where(key, "==", filters[key]));
+                        }
                     }
-                }
 
-                q = query(q, orderBy(order), limit(limitCount));
-                const snapshot = await getDocs(q);
-                return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+                    q = query(q, orderBy(order), limit(limitCount));
+                    const snapshot = await getDocs(q);
+                    const properties = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+                    return properties.length > 0 ? properties : [MOCK_PROPERTY];
+                } catch (error) {
+                    console.error("Error fetching properties from Firestore:", error);
+                    return [MOCK_PROPERTY];
+                }
             }
         }
 
         class Contact {
             static async create(data) {
-                const contactsCol = collection(db, `artifacts/${__app_id}/public/data/contacts`);
-                return await addDoc(contactsCol, {
-                    ...data,
-                    created_at: new Date()
-                });
+                try {
+                    const contactsCol = collection(db, `artifacts/${__app_id}/public/data/contacts`);
+                    return await addDoc(contactsCol, {
+                        ...data,
+                        created_at: new Date()
+                    });
+                } catch (error) {
+                    console.error("Error submitting contact form to Firestore:", error);
+                    alert("Failed to submit contact form. Please try again later.");
+                    throw error;
+                }
             }
         }
 
