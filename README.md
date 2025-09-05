@@ -1,147 +1,131 @@
-# Real Estate Property Landing Page
+# Real Estate Property Landing Page (Optimized Version)
 
-A fast, responsive static landing page for showcasing a single property: hero section, highlights, photo carousel, and a Netlify-powered booking form.
+A fast, responsive static landing page for showcasing a single property: hero section, highlights, carousel, and a Netlify-powered booking form with modern responsive image handling (AVIF/WebP fallbacks) and optional LQIP.
 
 ## Features
-- Hero with price, location & CTA
+- Hero with responsive `<picture>` (AVIF/WebP/JPEG)
 - Property highlights grid
-- Responsive image carousel (vanilla JS)
-- Netlify form for booking viewings
-- Accessible markup, semantic structure
-- SEO & social share metadata (Open Graph)
-- Mobile nav + swipe carousel
-- Easy to customize: no framework lock-in
+- Accessible, swipe-enabled image carousel (vanilla JS)
+- Netlify booking form (honeypot spam protection)
+- Optional AJAX-like form feedback
+- SEO + social Open Graph tags
+- Structured Data (JSON-LD) snippet (commented)
+- Performance oriented (lazy loading, decoding, sizes)
+- Minimal dependencies (no framework)
+
+## File Structure
+```
+/
+  index.html
+  styles.css
+  script.js
+  netlify.toml
+  README.md
+  images/
+    hero-front-day-800.jpg
+    hero-front-day-1200.jpg
+    hero-front-day-1600.jpg
+    hero-front-day-800.webp
+    ...
+    living-room-open-plan-1600.jpg
+    kitchen-chef-island-1600.jpg
+    primary-bedroom-suite-1600.jpg
+    backyard-entertaining-1600.jpg
+```
 
 ## Getting Started
 
-### 1. Clone / Create Repo
+### 1. Initialize and Push
 ```bash
 git init
 git add .
-git commit -m "Initial real estate landing page"
+git commit -m "Initial real estate landing (optimized images)"
 git branch -M main
 git remote add origin https://github.com/YourUser/your-property-landing.git
 git push -u origin main
 ```
 
-### 2. Add Photos
-Place high-quality images in `images/` and update filenames in:
-- `index.html` hero `<img>`
-- Carousel slides
+### 2. Deploy on Netlify
+1. New Site from Git
+2. Select repo
+3. Build command: (leave blank)
+4. Publish directory: `.`
+5. Deploy
 
-Use descriptive `alt` text for accessibility. Consider optimized sizes:
-- Hero: ~1600px wide
-- Carousel: 1600x900 or 1400x788
-- Use a service like TinyPNG or Squoosh
+Forms: Netlify auto-detects `<form name="booking" data-netlify="true">`.
 
-### 3. Deploy to Netlify
-1. Log in to Netlify
-2. New Site from Git
-3. Pick your GitHub repo
-4. Build command: (leave blank)
-5. Publish directory: `.`
-6. Deploy
+### 3. Add Your Real Images
+Replace placeholders in `images/` with real optimized images. Update alt text to match reality.
 
-Netlify will detect the form via:
-```html
-<form name="booking" method="POST" data-netlify="true">
+**Recommended widths:** 800 / 1200 / 1600 (or 1920)  
+**Aspect ratios:** Use consistent (e.g., 16:9 for carousel).
+
+### 4. Image Optimization Workflow (CLI Example)
+```bash
+mkdir -p images/dist
+for f in hero-front-day living-room-open-plan kitchen-chef-island primary-bedroom-suite backyard-entertaining; do
+  magick images/${f}.jpg -resize 1600x -strip images/dist/${f}-1600.jpg
+  magick images/${f}.jpg -resize 1200x -strip images/dist/${f}-1200.jpg
+  magick images/${f}.jpg -resize 800x  -strip images/dist/${f}-800.jpg
+  cwebp -q 80 images/dist/${f}-1600.jpg -o images/dist/${f}-1600.webp
+  cwebp -q 80 images/dist/${f}-1200.jpg -o images/dist/${f}-1200.webp
+  cwebp -q 80 images/dist/${f}-800.jpg  -o images/dist/${f}-800.webp
+  avifenc --min 30 --max 45 images/dist/${f}-1600.jpg images/dist/${f}-1600.avif
+  avifenc --min 30 --max 45 images/dist/${f}-1200.jpg images/dist/${f}-1200.avif
+  avifenc --min 30 --max 45 images/dist/${f}-800.jpg  images/dist/${f}-800.avif
+done
 ```
 
-### 4. Test the Form
-Submit once in production; check Netlify Dashboard > Forms.
+### 5. Alt Text Guidelines
+Be specific and neutral, e.g.:
+- "Open concept living room with floor-to-ceiling windows and neutral decor."
+- "Gourmet kitchen featuring a large quartz island and pendant lighting."
 
-Optional spam protection:
-- Honeypot already added (`bot-field`)
-- You can enable Netlify reCAPTCHA if needed
-
-### 5. Custom Domain
-Add your domain in Netlify > Domain settings. Set DNS or use Netlify-managed DNS for automatic SSL.
-
-### 6. SEO & Metadata
-Update:
-- `<title>`
-- `<meta name="description">`
-- Open Graph tags
-- `og:image` must be an absolute URL (500x500+)
-
-Create `sitemap.xml` and `robots.txt` later if you want better indexing.
+### 6. Structured Data
+Uncomment the JSON-LD block in `index.html` and adjust domain, currency, amenities, etc.
 
 ### 7. Performance Tips
-- Compress images
-- Consider `loading="lazy"` for non-hero images
-- Use WebP versions:
-```html
-<picture>
-  <source srcset="images/hero-1.webp" type="image/webp">
-  <img src="images/hero-1.jpg" alt="Description">
-</picture>
-```
+- Keep hero to one preload.
+- Use `fetchpriority="high"` only on primary hero image.
+- Convert large photos to AVIF/WebP; keep a JPEG fallback.
+- Avoid over-preloading (let browser lazy-load).
 
-### 8. Optional Enhancements
-| Feature | Idea |
-|---------|------|
-| Map | Embed Google Maps iframe or Leaflet JS |
-| Analytics | Add Plausible or Google Analytics |
-| Inquiry CRM | Zapier → Google Sheets / HubSpot |
-| Multi-property | Turn highlights into dynamic grid |
-| Dark Mode | Add a `data-theme` toggle CSS variables |
-| Image Lightbox | On click enlarge carousel images |
-| Structured Data | Add JSON-LD `RealEstateListing` schema |
+### 8. Optional LQIP (Blur-Up)
+If you create tiny blurred placeholders (e.g. `*-lqip.jpg`), you can:
+1. Set the placeholder as the initial `src` and swap to main image with JS OR
+2. Use CSS background with blur until load event.
 
-### 9. Structured Data Example (Optional)
-Add before `</head>`:
-```html
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "SingleFamilyResidence",
-  "name": "Modern Luxury Home",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "742 Evergreen Terrace",
-    "addressLocality": "Springfield",
-    "addressRegion": "IL",
-    "postalCode": "62704"
-  },
-  "numberOfRooms": 8,
-  "floorSize": {
-    "@type": "QuantitativeValue",
-    "value": 3200,
-    "unitCode": "FTK"
-  },
-  "amenityFeature": [
-    {"@type":"LocationFeatureSpecification","name":"Solar Ready"},
-    {"@type":"LocationFeatureSpecification","name":"EV Charger"},
-    {"@type":"LocationFeatureSpecification","name":"Chef Kitchen"}
-  ],
-  "offers": {
-    "@type": "Offer",
-    "price": "1250000",
-    "priceCurrency": "USD",
-    "availability": "https://schema.org/InStock"
-  }
-}
-</script>
-```
+The sample CSS/JS already supports `data-lqip` for fade-in if you annotate images.
+
+### 9. Form Handling Adjustments
+To let Netlify handle default redirect, remove the `e.preventDefault()` block in `script.js`.  
+For spam reduction: keep honeypot, optionally enable reCAPTCHA in Netlify.
 
 ### 10. Accessibility Checklist
-- All images have descriptive `alt`
-- Form inputs have `<label>` associations
-- Visible focus styles
-- Semantic headings (`h1`, `h2`, etc.)
-- Sufficient color contrast
+- Each meaningful image has an informative `alt`.
+- Headings hierarchical (h1 → h2).
+- Focus-visible outline retained.
+- Form labels associated.
 
-### 11. Editing & Iteration
-After changes:
+### 11. Future Enhancements
+| Feature | Suggestion |
+|---------|------------|
+| Lightbox | Add a modal enlarger for carousel images |
+| Multi-property | Convert to listing grid (cards) + dynamic detail pages |
+| Analytics | Add `<script defer data-domain="..." src="https://plausible.io/js/script.js"></script>` |
+| Dark Mode | Add [data-theme="dark"] body toggle with CSS var overrides |
+| Map | Embed Google Maps or Leaflet & geocode property coords |
+
+### 12. Updating Site
 ```bash
 git add .
-git commit -m "Update carousel images"
+git commit -m "Update images and alt text"
 git push
 ```
-Netlify auto-redeploys.
+Netlify redeploys automatically.
 
 ## License
-You can use this freely for personal/commercial projects. Attribution appreciated but not required.
+Use freely for personal or commercial landing pages. Attribution appreciated but not required.
 
-## Questions?
-Open an issue or extend it with a backend/API if you want saved leads outside Netlify.
+## Support
+Feel free to request a React, Next.js, or Tailwind port.
