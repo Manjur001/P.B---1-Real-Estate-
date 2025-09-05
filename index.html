@@ -15,45 +15,6 @@
       images/hero-front-day-1200.jpg 1200w,
       images/hero-front-day-1600.jpg 1600w" imagesizes="(max-width: 860px) 100vw, 50vw">
   <link rel="stylesheet" href="styles.css" />
-  <!-- Optional Structured Data (uncomment & adjust domain) -->
-  <!--
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SingleFamilyResidence",
-    "name": "Modern Luxury Home",
-    "image": [
-      "https://your-domain.com/images/hero-front-day-1200.jpg",
-      "https://your-domain.com/images/living-room-open-plan-1200.jpg",
-      "https://your-domain.com/images/kitchen-chef-island-1200.jpg"
-    ],
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "742 Evergreen Terrace",
-      "addressLocality": "Springfield",
-      "addressRegion": "IL",
-      "postalCode": "62704"
-    },
-    "numberOfRooms": 8,
-    "floorSize": {
-      "@type": "QuantitativeValue",
-      "value": 3200,
-      "unitCode": "FTK"
-    },
-    "amenityFeature": [
-      {"@type":"LocationFeatureSpecification","name":"Chef Kitchen"},
-      {"@type":"LocationFeatureSpecification","name":"Solar Ready"},
-      {"@type":"LocationFeatureSpecification","name":"EV Charger"}
-    ],
-    "offers": {
-      "@type": "Offer",
-      "price": "1250000",
-      "priceCurrency": "USD",
-      "availability": "https://schema.org/InStock"
-    }
-  }
-  </script>
-  -->
 </head>
 <body>
   <header class="site-header">
@@ -64,6 +25,7 @@
       </div>
       <nav class="main-nav" aria-label="Main">
         <a href="#photos">Photos</a>
+        <a href="#ai-gallery">AI Concepts</a>
         <a href="#highlights">Highlights</a>
         <a href="#contact">Book Viewing</a>
       </nav>
@@ -71,6 +33,7 @@
     </div>
     <nav id="mobile-menu" class="mobile-menu" hidden>
       <a href="#photos">Photos</a>
+      <a href="#ai-gallery">AI Concepts</a>
       <a href="#highlights">Highlights</a>
       <a href="#contact">Book Viewing</a>
     </nav>
@@ -81,23 +44,14 @@
     <section class="hero" id="hero">
       <div class="hero-media">
         <picture>
-          <!-- AVIF -->
-            <source
-              type="image/avif"
-              srcset="
-                images/hero-front-day-800.avif 800w,
-                images/hero-front-day-1200.avif 1200w,
-                images/hero-front-day-1600.avif 1600w"
-              sizes="(max-width: 860px) 100vw, 50vw">
-          <!-- WebP -->
-          <source
-            type="image/webp"
-            srcset="
-              images/hero-front-day-800.webp 800w,
-              images/hero-front-day-1200.webp 1200w,
-              images/hero-front-day-1600.webp 1600w"
-            sizes="(max-width: 860px) 100vw, 50vw">
-          <!-- JPEG fallback -->
+          <source type="image/avif" srcset="
+            images/hero-front-day-800.avif 800w,
+            images/hero-front-day-1200.avif 1200w,
+            images/hero-front-day-1600.avif 1600w" sizes="(max-width: 860px) 100vw, 50vw">
+          <source type="image/webp" srcset="
+            images/hero-front-day-800.webp 800w,
+            images/hero-front-day-1200.webp 1200w,
+            images/hero-front-day-1600.webp 1600w" sizes="(max-width: 860px) 100vw, 50vw">
           <img
             src="images/hero-front-day-1600.jpg"
             srcset="
@@ -116,7 +70,7 @@
         <p class="property-location">742 Evergreen Terrace, Springfield</p>
         <div class="price-line">
           <span class="price">$1,250,000</span>
-            <span class="status-pill">For Sale</span>
+          <span class="status-pill">For Sale</span>
         </div>
         <ul class="quick-stats" aria-label="Property quick facts">
           <li><strong>4</strong> Beds</li>
@@ -158,10 +112,10 @@
       </div>
     </section>
 
-    <!-- Gallery / Carousel -->
+    <!-- Real Photo Gallery / Carousel -->
     <section id="photos" class="carousel-section">
       <div class="wrap">
-        <h2>Gallery</h2>
+        <h2>Gallery (Actual Property)</h2>
         <div class="carousel" aria-roledescription="carousel">
           <div class="carousel-track">
             <div class="slide current">
@@ -182,7 +136,7 @@
               <picture>
                 <source type="image/avif" srcset="images/kitchen-chef-island-1600.avif">
                 <source type="image/webp" srcset="images/kitchen-chef-island-1600.webp">
-                <img src="images/kitchen-chef-island-1600.jpg" alt="Gourmet kitchen featuring a large quartz island and pendant lighting" loading="lazy" decoding="async">
+                <img src="images/kitchen-chef-island-1600.jpg" alt="Gourmet kitchen with large quartz island and pendant lighting" loading="lazy" decoding="async">
               </picture>
             </div>
             <div class="slide">
@@ -203,6 +157,47 @@
           <button class="carousel-btn prev" aria-label="Previous image">‹</button>
           <button class="carousel-btn next" aria-label="Next image">›</button>
           <div class="carousel-dots" aria-label="Select image"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- AI Concept Gallery -->
+    <section id="ai-gallery" class="ai-gallery-section">
+      <div class="wrap">
+        <h2>AI Concept Visualizations</h2>
+        <p class="ai-disclaimer">
+          The images below are AI-generated conceptual visualizations and may not represent the exact current condition of the property.
+        </p>
+        <div class="ai-grid">
+          <!-- Example AI image cards (replace filenames once generated) -->
+          <figure class="ai-card">
+            <div class="ai-img-box">
+              <img src="images/ai/exterior-contemporary-1.jpg" alt="AI concept exterior emphasizing minimalist landscaping and warm twilight lighting" loading="lazy" decoding="async">
+              <span class="ai-badge" aria-label="AI generated">AI</span>
+            </div>
+            <figcaption>Alternate exterior lighting concept.</figcaption>
+          </figure>
+          <figure class="ai-card">
+            <div class="ai-img-box">
+              <img src="images/ai/living-room-staging-variant.jpg" alt="AI concept living room staging with neutral modern sofas and panoramic glass wall" loading="lazy" decoding="async">
+              <span class="ai-badge" aria-label="AI generated">AI</span>
+            </div>
+            <figcaption>Alternative living room staging idea.</figcaption>
+          </figure>
+          <figure class="ai-card">
+            <div class="ai-img-box">
+              <img src="images/ai/kitchen-materials-upgrade.jpg" alt="AI concept kitchen with darker cabinetry and marble waterfall island" loading="lazy" decoding="async">
+              <span class="ai-badge" aria-label="AI generated">AI</span>
+            </div>
+            <figcaption>Kitchen finish upgrade concept.</figcaption>
+          </figure>
+          <figure class="ai-card">
+            <div class="ai-img-box">
+              <img src="images/ai/backyard-evening-firepit.jpg" alt="AI concept backyard evening ambiance with fire pit and lounge seating" loading="lazy" decoding="async">
+              <span class="ai-badge" aria-label="AI generated">AI</span>
+            </div>
+            <figcaption>Evening outdoor ambiance concept.</figcaption>
+          </figure>
         </div>
       </div>
     </section>
@@ -241,7 +236,7 @@
             <label for="date">Preferred Date</label>
             <input id="date" type="date" name="preferred_date" />
           </div>
-            <div class="field">
+          <div class="field">
             <label for="message">Questions / Notes</label>
             <textarea id="message" name="message" rows="4" placeholder="Any specific interests or timing?"></textarea>
           </div>
