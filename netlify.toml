@@ -2,13 +2,7 @@
   publish = "."
   command = ""
 
-# Redirect form submissions (optional custom success page)
-# [[redirects]]
-#   from = "/"
-#   to = "/?submitted=true"
-#   status = 303
-
-# Security headers (basic)
+# Security headers
 [[headers]]
   for = "/*"
   [headers.values]
@@ -16,3 +10,9 @@
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "geolocation=(), microphone=(), camera=()"
+
+# (Optional) Add redirects or form success routes if needed
+# [[redirects]]
+#   from = "/"
+#   to = "/?submitted=true"
+#   status = 303
