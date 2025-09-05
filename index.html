@@ -1,601 +1,192 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Property Listing</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            background-color: #F8FAFC;
-        }
-
-        .fade-in {
-            animation: fadeIn 0.8s ease-out;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .spin-loader {
-            border-top-color: transparent;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        .transition-transform {
-            transition: transform 0.3s ease-in-out;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <title>Luxury Modern Home | 742 Evergreen Terrace</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Schedule a viewing for this stunning 4 bed, 3.5 bath modern home featuring open-concept living, chef's kitchen, and panoramic garden views." />
+  <meta property="og:title" content="Luxury Modern Home for Sale" />
+  <meta property="og:description" content="Book a viewing today. 4 Bed · 3.5 Bath · 3,200 sq ft" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://your-domain.com/images/hero-1.jpg" />
+  <meta property="og:url" content="https://your-domain.com/" />
+  <link rel="preload" as="image" href="images/hero-1.jpg" />
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-
-    <!-- Main App Container -->
-    <div id="root" class="min-h-screen">
-        <!-- Loader will be injected here -->
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <div class="logo" aria-label="Brand">
+        <span class="logo-icon">🏡</span>
+        <span class="logo-text">EstateShowcase</span>
+      </div>
+      <nav class="main-nav" aria-label="Main">
+        <a href="#photos">Photos</a>
+        <a href="#highlights">Highlights</a>
+        <a href="#contact">Book Viewing</a>
+      </nav>
+      <button class="mobile-nav-toggle" aria-expanded="false" aria-controls="mobile-menu">☰</button>
     </div>
+    <nav id="mobile-menu" class="mobile-menu" hidden>
+      <a href="#photos">Photos</a>
+      <a href="#highlights">Highlights</a>
+      <a href="#contact">Book Viewing</a>
+    </nav>
+  </header>
 
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, doc, getDoc, addDoc, onSnapshot, collection, query, where, getDocs, orderBy, limit, setLogLevel } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-media">
+        <picture>
+          <source srcset="images/hero-1.jpg" type="image/jpeg" />
+          <img src="images/hero-1.jpg" alt="Front exterior of the modern luxury home with landscaped entrance" />
+        </picture>
+      </div>
+      <div class="hero-content">
+        <h1>Modern Luxury Home</h1>
+        <p class="property-location">742 Evergreen Terrace, Springfield</p>
+        <div class="price-line">
+          <span class="price">$1,250,000</span>
+          <span class="status-pill">For Sale</span>
+        </div>
+        <ul class="quick-stats" aria-label="Property quick facts">
+          <li><strong>4</strong> Beds</li>
+          <li><strong>3.5</strong> Baths</li>
+          <li><strong>3,200</strong> sq ft</li>
+          <li><strong>0.4</strong> acre lot</li>
+        </ul>
+        <p class="short-desc">Flooded with natural light, featuring a chef’s kitchen, private office, flexible loft space, and seamless indoor‑outdoor living.</p>
+        <a href="#contact" class="btn primary">Book a Viewing</a>
+      </div>
+    </section>
 
-        // Global variables provided by the Canvas environment.
-        // You can replace these with your own Firebase project configuration if needed.
-        const __app_id = typeof window.__app_id !== 'undefined' ? window.__app_id : 'default-app-id';
-        const __firebase_config = typeof window.__firebase_config !== 'undefined' ? window.__firebase_config : '{}';
-        const __initial_auth_token = typeof window.__initial_auth_token !== 'undefined' ? window.__initial_auth_token : null;
+    <!-- Highlights -->
+    <section id="highlights" class="highlights">
+      <div class="wrap">
+        <h2>Property Highlights</h2>
+        <div class="grid features">
+          <div class="feature-card">
+            <div class="icon">🍷</div>
+            <h3>Gourmet Kitchen</h3>
+            <p>Quartz counters, 10ft island, premium smart appliances.</p>
+          </div>
+          <div class="feature-card">
+            <div class="icon">🌿</div>
+            <h3>Indoor / Outdoor</h3>
+            <p>Sliding glass wall opens to landscaped entertaining patio.</p>
+          </div>
+            <div class="feature-card">
+            <div class="icon">⚡</div>
+            <h3>Smart & Efficient</h3>
+            <p>Solar, EV charger, zoned HVAC, whole‑home automation.</p>
+          </div>
+          <div class="feature-card">
+            <div class="icon">🛁</div>
+            <h3>Spa Suite</h3>
+            <p>Heated floors, soaking tub, rainfall shower, custom vanity.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-        // Firebase setup
-        const firebaseConfig = JSON.parse(__firebase_config);
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
-        const auth = getAuth(app);
-        setLogLevel('debug');
+    <!-- Photo Carousel -->
+    <section id="photos" class="carousel-section">
+      <div class="wrap">
+        <h2>Gallery</h2>
+        <div class="carousel" aria-roledescription="carousel">
+          <div class="carousel-track">
+            <div class="slide current">
+              <img src="images/hero-1.jpg" alt="Front exterior perspective at sunset">
+            </div>
+            <div class="slide">
+              <img src="images/living-room.jpg" alt="Open concept living room with large windows">
+            </div>
+            <div class="slide">
+              <img src="images/kitchen.jpg" alt="Modern kitchen with large island and pendant lighting">
+            </div>
+            <div class="slide">
+              <img src="images/master-bedroom.jpg" alt="Spacious master bedroom with natural light">
+            </div>
+            <div class="slide">
+              <img src="images/backyard.jpg" alt="Backyard patio with seating and greenery">
+            </div>
+          </div>
+          <button class="carousel-btn prev" aria-label="Previous image">‹</button>
+          <button class="carousel-btn next" aria-label="Next image">›</button>
+          <div class="carousel-dots" aria-label="Select image"></div>
+        </div>
+      </div>
+    </section>
 
-        async function authAndFetch() {
-            if (__initial_auth_token) {
-                try {
-                    await signInWithCustomToken(auth, __initial_auth_token);
-                } catch (error) {
-                    console.error("Error signing in with custom token:", error);
-                    await signInAnonymously(auth);
-                }
-            } else {
-                await signInAnonymously(auth);
-            }
-        }
+    <!-- Contact / Booking Form -->
+    <section id="contact" class="contact-section">
+      <div class="wrap contact-grid">
+        <div>
+          <h2>Schedule a Private Viewing</h2>
+          <p>Fill out the form and our agent will contact you to confirm your appointment and answer any questions.</p>
+          <ul class="contact-points">
+            <li><strong>Agent:</strong> Jane Smith</li>
+            <li><strong>Phone:</strong> (555) 123‑4567</li>
+            <li><strong>Email:</strong> jane@example.com</li>
+          </ul>
+          <p class="disclaimer">By submitting this form you agree to be contacted about this property. Your information is not shared.</p>
+        </div>
+        <form name="booking" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="booking-form">
+          <input type="hidden" name="form-name" value="booking">
+          <p class="hidden">
+            <label>Don’t fill this out if you’re human: <input name="bot-field" /></label>
+          </p>
+          <div class="field">
+            <label for="name">Full Name *</label>
+            <input id="name" name="name" required autocomplete="name" />
+          </div>
+          <div class="field">
+            <label for="email">Email *</label>
+            <input id="email" type="email" name="email" required autocomplete="email" />
+          </div>
+            <div class="field">
+            <label for="phone">Phone *</label>
+            <input id="phone" name="phone" required autocomplete="tel" />
+          </div>
+          <div class="field">
+            <label for="date">Preferred Date</label>
+            <input id="date" type="date" name="preferred_date" />
+          </div>
+          <div class="field">
+            <label for="message">Questions / Notes</label>
+            <textarea id="message" name="message" rows="4" placeholder="Any specific interests or timing?"></textarea>
+          </div>
+          <button type="submit" class="btn submit-btn">Request Viewing</button>
+          <p class="form-status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
 
-        // Mock data to display if no properties are found in the database.
-        const MOCK_PROPERTY = {
-            title: "Stunning Modern Villa with Ocean View",
-            description: "A breathtaking villa designed for modern living. Features open-plan spaces, floor-to-ceiling windows, and smart home technology. Perfect for those who appreciate luxury and tranquility.",
-            price: 2750000,
-            address: "123 Oceanfront Drive, Malibu, CA",
-            bedrooms: 4,
-            bathrooms: 4,
-            square_feet: 4200,
-            property_type: "villa",
-            images: [
-                "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2075&q=80",
-                "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?ixlib=rb-4.0.3&auto=format&fit=crop&w=2075&q=80",
-                "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=2075&q=80",
-                "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2075&q=80",
-                "https://images.unsplash.com/photo-1600607687644-c7171b42498b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2075&q=80"
-            ],
-            features: [
-                "Pool",
-                "Gym",
-                "Wifi",
-                "Garden",
-                "Security",
-                "Garage"
-            ],
-            is_featured: true,
-            id: "mock_property_1"
-        };
+    <!-- Map / Embedded (optional placeholder) -->
+    <section class="map-placeholder">
+      <div class="wrap">
+        <h2>Location</h2>
+        <div class="map-box" role="img" aria-label="Map placeholder - replace with an embedded map">
+          <p>Map Placeholder (Embed Google Maps / Leaflet later)</p>
+        </div>
+      </div>
+    </section>
+  </main>
 
+  <footer class="site-footer">
+    <div class="wrap footer-grid">
+      <div>
+        <strong>EstateShowcase</strong><br>
+        <small>&copy; <span id="year"></span> All rights reserved.</small>
+      </div>
+      <div class="foot-links">
+        <a href="#hero">Top</a>
+        <a href="#contact">Book Viewing</a>
+      </div>
+    </div>
+  </footer>
 
-        // Data entities
-        class Property {
-            static async list(order = "-created_at", limitCount = 10) {
-                try {
-                    const propertiesCol = collection(db, `artifacts/${__app_id}/public/data/properties`);
-                    const q = query(propertiesCol, orderBy(order), limit(limitCount));
-                    const snapshot = await getDocs(q);
-                    const properties = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-                    return properties.length > 0 ? properties : [MOCK_PROPERTY];
-                } catch (error) {
-                    console.error("Error fetching properties from Firestore:", error);
-                    return [MOCK_PROPERTY];
-                }
-            }
-
-            static async filter(filters, order = "-created_at", limitCount = 10) {
-                try {
-                    const propertiesCol = collection(db, `artifacts/${__app_id}/public/data/properties`);
-                    let q = query(propertiesCol);
-
-                    for (const key in filters) {
-                        if (Object.prototype.hasOwnProperty.call(filters, key)) {
-                            q = query(q, where(key, "==", filters[key]));
-                        }
-                    }
-
-                    q = query(q, orderBy(order), limit(limitCount));
-                    const snapshot = await getDocs(q);
-                    const properties = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-                    return properties.length > 0 ? properties : [MOCK_PROPERTY];
-                } catch (error) {
-                    console.error("Error fetching properties from Firestore:", error);
-                    return [MOCK_PROPERTY];
-                }
-            }
-        }
-
-        class Contact {
-            static async create(data) {
-                try {
-                    const contactsCol = collection(db, `artifacts/${__app_id}/public/data/contacts`);
-                    return await addDoc(contactsCol, {
-                        ...data,
-                        created_at: new Date()
-                    });
-                } catch (error) {
-                    console.error("Error submitting contact form to Firestore:", error);
-                    alert("Failed to submit contact form. Please try again later.");
-                    throw error;
-                }
-            }
-        }
-
-        const icons = {
-            MapPin: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>`,
-            Bed: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bed"><path d="M2 4v16"/><path d="M2 8h18a2 2 0 1 1 0 4h-4"/><path d="M2 12h16a2 2 0 1 0 0 4h-4"/><path d="M2 16h18a2 2 0 1 1 0 4h-4"/><path d="M16 20v-8a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v8"/></svg>`,
-            Bath: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bath"><path d="M9 13a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2V7H9v6Z"/><path d="M3 13V7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6"/><path d="M21 16h-4a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h4v-6Z"/></svg>`,
-            Square: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-square"><rect width="18" height="18" x="3" y="3" rx="2"/></svg>`,
-            Car: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-car"><path d="M10 13a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-2a2 2 0 0 1 2-2Z"/><path d="M12 9h4l3 5H12a2 2 0 0 1-2-2V9Z"/><path d="M21 21v-2a2 2 0 0 1-2-2h-3"/><path d="M19 14h-3"/><path d="M5 21v-2a2 2 0 0 0-2-2H2"/></svg>`,
-            Wifi: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-wifi"><path d="M12 20a8 8 0 0 0 8-8"/><path d="M5.46 5.46A20.35 20.35 0 0 1 12 4"/><path d="M8.5 16.5a4.5 4.5 0 0 1 4.5-4.5"/><path d="M3 10a17 17 0 0 1 18 0"/></svg>`,
-            Shield: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shield"><path d="M12 21.4l-9-4.8V7.6l9-4.8 9 4.8v9Z"/></svg>`,
-            Trees: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trees"><path d="M10 10l-4 4V8l4-4z"/><path d="M22 10l-4 4V8l4-4z"/><path d="M16 16l-4 4V14l4-4z"/><path d="M12 20v-6"/></svg>`,
-            Dumbbell: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-dumbbell"><path d="M14 10l-4-4a2.83 2.83 0 0 1 4 4l-4 4z"/><path d="M10 14l4 4a2.83 2.83 0 0 1-4-4l4-4z"/><path d="M2 14v-4a2 2 0 0 1 4 0v4a2 2 0 0 1-4 0z"/><path d="M22 14v-4a2 2 0 0 1-4 0v4a2 2 0 0 1 4 0z"/><path d="M8 12a2 2 0 0 1 4 0v4a2 2 0 0 1-4 0z"/><path d="M16 12a2 2 0 0 1-4 0v-4a2 2 0 0 1 4 0z"/></svg>`,
-            Coffee: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-coffee"><path d="M12 2a4 4 0 0 1 4 4v2a2 2 0 0 1-2 2h-4a2 2 0 0 1-2-2V6a4 4 0 0 1 4-4Z"/><path d="M22 6a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Z"/><path d="M12 12v6a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-6a2 2 0 0 0-2-2H14a2 2 0 0 0-2 2Z"/></svg>`,
-            Waves: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-waves"><path d="M2 13s2-2 4-2c2 0 2 3 4 3s2-3 4-3 2 3 4 3 2-2 4-2"/></svg>`,
-            ChevronLeft: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-left"><path d="m15 18-6-6 6-6"/></svg>`,
-            ChevronRight: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right"><path d="m9 18 6-6-6-6"/></svg>`,
-            Expand: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-expand"><path d="m21 21-6-6m6 0-6 6"/><path d="m3 3 6 6m-6 0 6-6"/></svg>`,
-            User: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>`,
-            Mail: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-10 7L2 7"/></svg>`,
-            Phone: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-phone"><path d="M22 16.92v3.08a2 2 0 0 1-2 2A20 20 0 0 1 2 4a2 2 0 0 1 2-2h3.08a2 2 0 0 1 2 1.66A12.44 12.44 0 0 1 9.92 10"/><path d="M15 9.75v3.08a2 2 0 0 1-2 2A10 10 0 0 1 7.25 12"/><path d="M15 9.75v3.08a2 2 0 0 1-2 2A10 10 0 0 1 7.25 12"/></svg>`,
-            MessageSquare: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-message-square"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>`,
-            Calendar: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>`,
-            CheckCircle2: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-circle-2"><path d="M12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2z"/><path d="M12 6a4 4 0 0 0-4 4v4a4 4 0 0 0 4 4s4 0 4-4v-4a4 4 0 0 0-4-4z"/></svg>`,
-            Loader2: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-loader-2"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>`
-        };
-
-        const renderComponent = (element, componentHtml) => {
-            const root = document.getElementById('root');
-            if (element) {
-                element.innerHTML = componentHtml;
-                return;
-            }
-            root.innerHTML = componentHtml;
-        };
-
-        // Replicating React's useState
-        let state = {};
-        let stateCallbacks = {};
-
-        const useState = (initialValue, name) => {
-            state[name] = state[name] === undefined ? initialValue : state[name];
-            const setState = (newValue) => {
-                state[name] = newValue;
-                if (stateCallbacks[name]) {
-                    stateCallbacks[name]();
-                }
-            };
-            return [state[name], setState];
-        };
-
-        const useEffect = (callback, dependencies) => {
-            let hasChanged = false;
-            if (!dependencies) {
-                hasChanged = true;
-            } else {
-                for (let i = 0; i < dependencies.length; i++) {
-                    if (state[dependencies[i]] !== dependencies[i]) {
-                        hasChanged = true;
-                        break;
-                    }
-                }
-            }
-            if (hasChanged) {
-                callback();
-            }
-        };
-
-        // Replicating a simple React-like app flow
-        const renderApp = () => {
-            const [featuredProperty, setFeaturedProperty] = useState(null, 'featuredProperty');
-            const [isLoading, setIsLoading] = useState(true, 'isLoading');
-            const [isAuthReady, setIsAuthReady] = useState(false, 'isAuthReady');
-
-            stateCallbacks.featuredProperty = renderApp;
-            stateCallbacks.isLoading = renderApp;
-            stateCallbacks.isAuthReady = renderApp;
-
-            if (isLoading) {
-                renderComponent(null, `
-                    <div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 to-slate-100">
-                        <div class="text-center">
-                            <div class="w-16 h-16 border-4 border-emerald-500 border-t-transparent rounded-full spin-loader mx-auto mb-4"></div>
-                            <p class="text-slate-600 text-lg">Loading property details...</p>
-                        </div>
-                    </div>
-                `);
-            } else if (!featuredProperty) {
-                renderComponent(null, `
-                    <div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 to-slate-100">
-                        <div class="text-center max-w-md mx-auto p-8">
-                            <div class="w-20 h-20 bg-slate-200 rounded-full flex items-center justify-center mx-auto mb-6">
-                                <span class="text-2xl">🏠</span>
-                            </div>
-                            <h2 class="text-2xl font-bold text-slate-900 mb-4">No Properties Available</h2>
-                            <p class="text-slate-600">
-                                There are currently no properties to display. Please check back later or contact us directly.
-                            </p>
-                        </div>
-                    </div>
-                `);
-            } else {
-                const appHtml = `
-                    <div class="min-h-screen bg-white font-sans text-slate-800 antialiased">
-                        <!-- Hero Section -->
-                        <section class="relative min-h-screen overflow-hidden">
-                            <div class="absolute inset-0">
-                                <img src="${featuredProperty.images?.[0] || 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2075&q=80'}" alt="${featuredProperty.title}" class="w-full h-full object-cover">
-                                <div class="absolute inset-0 bg-black/30"></div>
-                                <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
-                            </div>
-                            <div class="relative z-10 flex items-center min-h-screen">
-                                <div class="container mx-auto px-6 lg:px-8">
-                                    <div class="max-w-4xl fade-in">
-                                        <span class="inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold bg-emerald-600 text-white border-0 px-4 py-2 text-sm mb-6">
-                                            ${featuredProperty.is_featured ? "Featured Property" : "Premium Listing"}
-                                        </span>
-                                        <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
-                                            ${featuredProperty.title}
-                                        </h1>
-                                        <div class="flex items-center gap-2 mb-8">
-                                            ${icons.MapPin}
-                                            <p class="text-xl text-white/90">${featuredProperty.address}</p>
-                                        </div>
-                                        <div class="flex flex-wrap items-center gap-8 mb-8 text-white/90">
-                                            ${featuredProperty.bedrooms ? `<div class="flex items-center gap-2">${icons.Bed}<span class="text-lg font-medium">${featuredProperty.bedrooms} Beds</span></div>` : ''}
-                                            ${featuredProperty.bathrooms ? `<div class="flex items-center gap-2">${icons.Bath}<span class="text-lg font-medium">${featuredProperty.bathrooms} Baths</span></div>` : ''}
-                                            ${featuredProperty.square_feet ? `<div class="flex items-center gap-2">${icons.Square}<span class="text-lg font-medium">${featuredProperty.square_feet.toLocaleString()} sq ft</span></div>` : ''}
-                                        </div>
-                                        <div class="mb-10">
-                                            <div class="text-5xl md:text-6xl font-bold text-emerald-400 mb-2">
-                                                $${featuredProperty.price?.toLocaleString()}
-                                            </div>
-                                            <p class="text-white/80 text-lg">Exceptional value in prime location</p>
-                                        </div>
-                                        <div class="flex flex-col sm:flex-row gap-4">
-                                            <button onclick="document.getElementById('contact-form').scrollIntoView({ behavior: 'smooth', block: 'start' })" class="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 rounded-lg">
-                                                Book a Viewing
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-
-                        <!-- Property Highlights Section -->
-                        <section class="py-20 bg-gradient-to-b from-white to-slate-50">
-                            <div class="container mx-auto px-6 lg:px-8">
-                                <div class="text-center mb-16">
-                                    <h2 class="text-4xl md:text-5xl font-bold text-slate-900 mb-6">Property Highlights</h2>
-                                    <p class="text-xl text-slate-600 max-w-2xl mx-auto">Discover what makes this property exceptional</p>
-                                </div>
-                                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-                                    <div class="group hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border-0 bg-white/80 backdrop-blur-sm rounded-xl shadow-md p-4">
-                                        <div class="text-center p-8">
-                                            <div class="w-16 h-16 bg-gradient-to-br from-emerald-400 to-emerald-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                                                ${icons.Bed}
-                                            </div>
-                                            <h3 class="text-3xl font-bold text-slate-900 mb-2">${featuredProperty.bedrooms || 0}</h3>
-                                            <p class="text-slate-600 font-medium">Bedrooms</p>
-                                        </div>
-                                    </div>
-                                    <div class="group hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border-0 bg-white/80 backdrop-blur-sm rounded-xl shadow-md p-4">
-                                        <div class="text-center p-8">
-                                            <div class="w-16 h-16 bg-gradient-to-br from-blue-400 to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                                                ${icons.Bath}
-                                            </div>
-                                            <h3 class="text-3xl font-bold text-slate-900 mb-2">${featuredProperty.bathrooms || 0}</h3>
-                                            <p class="text-slate-600 font-medium">Bathrooms</p>
-                                        </div>
-                                    </div>
-                                    <div class="group hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border-0 bg-white/80 backdrop-blur-sm rounded-xl shadow-md p-4">
-                                        <div class="text-center p-8">
-                                            <div class="w-16 h-16 bg-gradient-to-br from-purple-400 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                                                ${icons.Square}
-                                            </div>
-                                            <h3 class="text-3xl font-bold text-slate-900 mb-2">${featuredProperty.square_feet?.toLocaleString() || '0'}</h3>
-                                            <p class="text-slate-600 font-medium">Square Feet</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                ${featuredProperty.features && featuredProperty.features.length > 0 ? `
-                                    <div class="text-center">
-                                        <h3 class="text-2xl font-bold text-slate-900 mb-8">Premium Features</h3>
-                                        <div class="flex flex-wrap justify-center gap-3">
-                                            ${featuredProperty.features.map(feature => {
-                                                const iconName = feature.toLowerCase().replace(/ /g, '');
-                                                const iconHtml = icons[iconName] || icons.Coffee;
-                                                return `
-                                                    <span class="inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold bg-gradient-to-r from-slate-100 to-slate-200 text-slate-700 px-6 py-3 text-sm font-medium hover:from-emerald-100 hover:to-emerald-200 hover:text-emerald-800 transition-all duration-300 border-0">
-                                                        ${iconHtml}
-                                                        ${feature}
-                                                    </span>`;
-                                            }).join('')}
-                                        </div>
-                                    </div>` : ''}
-                            </div>
-                        </section>
-
-                        <!-- Photo Carousel Section -->
-                        <section class="py-20 bg-slate-50">
-                            <div class="container mx-auto px-6 lg:px-8">
-                                <div class="text-center mb-16">
-                                    <h2 class="text-4xl md:text-5xl font-bold text-slate-900 mb-6">Photo Gallery</h2>
-                                    <p class="text-xl text-slate-600">Explore every corner of this beautiful property</p>
-                                </div>
-                                <div class="max-w-5xl mx-auto">
-                                    <div id="main-image-container" class="relative group mb-6 rounded-3xl overflow-hidden shadow-2xl">
-                                        <!-- Main image will be injected here -->
-                                        <button id="prev-btn" class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/90 backdrop-blur-sm hover:bg-white border-0 shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-300 w-12 h-12 flex items-center justify-center rounded-full">
-                                            ${icons.ChevronLeft}
-                                        </button>
-                                        <button id="next-btn" class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/90 backdrop-blur-sm hover:bg-white border-0 shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-300 w-12 h-12 flex items-center justify-center rounded-full">
-                                            ${icons.ChevronRight}
-                                        </button>
-                                        <button id="fullscreen-btn" class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm hover:bg-white border-0 shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-300 w-10 h-10 flex items-center justify-center rounded-full">
-                                            ${icons.Expand}
-                                        </button>
-                                        <div id="image-counter" class="absolute bottom-4 right-4 bg-black/50 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm"></div>
-                                    </div>
-                                    <div id="thumbnail-strip" class="flex gap-3 justify-center overflow-x-auto pb-2">
-                                        <!-- Thumbnails will be injected here -->
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-
-                        <!-- Contact Form Section -->
-                        <div id="contact-form">
-                            <section class="py-20 bg-gradient-to-br from-slate-50 to-slate-100">
-                                <div class="container mx-auto px-6 lg:px-8">
-                                    <div class="text-center mb-16">
-                                        <h2 class="text-4xl md:text-5xl font-bold text-slate-900 mb-6">Schedule Your Viewing</h2>
-                                        <p class="text-xl text-slate-600 max-w-2xl mx-auto">Ready to see this amazing property? Fill out the form below and we'll get back to you within 24 hours.</p>
-                                    </div>
-                                    <div id="contact-form-container" class="max-w-3xl mx-auto">
-                                        <!-- Form will be injected here -->
-                                    </div>
-                                </div>
-                            </section>
-                        </div>
-                    </div>
-                `;
-                renderComponent(null, appHtml);
-
-                // Initialize Photo Carousel logic
-                const images = featuredProperty.images || [
-                    "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2075&q=80",
-                    "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?ixlib=rb-4.0.3&auto=format&fit=crop&w=2075&q=80",
-                    "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=2075&q=80",
-                    "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2075&q=80",
-                    "https://images.unsplash.com/photo-1600607687644-c7171b42498b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2075&q=80"
-                ];
-                let currentIndex = 0;
-
-                const renderImage = () => {
-                    const mainImageContainer = document.getElementById('main-image-container');
-                    const imageCounter = document.getElementById('image-counter');
-                    if (mainImageContainer) {
-                        mainImageContainer.innerHTML = `
-                            <img src="${images[currentIndex]}" alt="Property view ${currentIndex + 1}" class="w-full h-[600px] object-cover cursor-pointer" onclick="showFullscreen(${currentIndex})">
-                            <button id="prev-btn" class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/90 backdrop-blur-sm hover:bg-white border-0 shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-300 w-12 h-12 flex items-center justify-center rounded-full">${icons.ChevronLeft}</button>
-                            <button id="next-btn" class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/90 backdrop-blur-sm hover:bg-white border-0 shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-300 w-12 h-12 flex items-center justify-center rounded-full">${icons.ChevronRight}</button>
-                            <button id="fullscreen-btn" class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm hover:bg-white border-0 shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-300 w-10 h-10 flex items-center justify-center rounded-full">${icons.Expand}</button>
-                            <div class="absolute bottom-4 right-4 bg-black/50 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm">${currentIndex + 1} / ${images.length}</div>
-                        `;
-                        document.getElementById('prev-btn').onclick = prevImage;
-                        document.getElementById('next-btn').onclick = nextImage;
-                        document.getElementById('fullscreen-btn').onclick = () => showFullscreen(currentIndex);
-                    }
-                };
-
-                const renderThumbnails = () => {
-                    const thumbnailStrip = document.getElementById('thumbnail-strip');
-                    if (thumbnailStrip) {
-                        thumbnailStrip.innerHTML = images.map((image, index) => `
-                            <button onclick="goToImage(${index})" class="flex-shrink-0 w-20 h-20 rounded-xl overflow-hidden transition-all duration-300 ${index === currentIndex ? 'ring-4 ring-emerald-500 scale-110' : 'opacity-70 hover:opacity-100 hover:scale-105'}">
-                                <img src="${image}" alt="Thumbnail ${index + 1}" class="w-full h-full object-cover">
-                            </button>
-                        `).join('');
-                    }
-                };
-
-                const nextImage = () => {
-                    currentIndex = (currentIndex + 1) % images.length;
-                    renderImage();
-                    renderThumbnails();
-                };
-
-                const prevImage = () => {
-                    currentIndex = (currentIndex - 1 + images.length) % images.length;
-                    renderImage();
-                    renderThumbnails();
-                };
-
-                const goToImage = (index) => {
-                    currentIndex = index;
-                    renderImage();
-                    renderThumbnails();
-                };
-
-                const showFullscreen = (index) => {
-                    const modalHtml = `
-                        <div id="fullscreen-modal" class="fixed inset-0 bg-black/95 z-50 flex items-center justify-center p-4">
-                            <div class="relative max-w-7xl max-h-full">
-                                <img src="${images[index]}" alt="Property view ${index + 1}" class="max-w-full max-h-full object-contain rounded-lg">
-                                <button onclick="document.getElementById('fullscreen-modal').remove()" class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm hover:bg-white w-10 h-10 flex items-center justify-center rounded-full">
-                                    &times;
-                                </button>
-                            </div>
-                        </div>
-                    `;
-                    document.body.insertAdjacentHTML('beforeend', modalHtml);
-                };
-
-                renderImage();
-                renderThumbnails();
-
-                // Initialize Contact Form
-                let isSubmitted = false;
-                const renderForm = () => {
-                    const formContainer = document.getElementById('contact-form-container');
-                    if (formContainer) {
-                        if (isSubmitted) {
-                            formContainer.innerHTML = `
-                                <div class="fade-in text-center max-w-2xl mx-auto">
-                                    <div class="w-20 h-20 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                                        ${icons.CheckCircle2}
-                                    </div>
-                                    <h2 class="text-3xl font-bold text-slate-900 mb-4">Thank You!</h2>
-                                    <p class="text-lg text-slate-600 mb-8">
-                                        We've received your inquiry and will contact you within 24 hours to schedule your viewing.
-                                    </p>
-                                    <button onclick="isSubmitted = false; renderForm();" class="border border-emerald-300 text-emerald-700 hover:bg-emerald-50 bg-transparent px-4 py-2 rounded-lg font-medium">
-                                        Submit Another Inquiry
-                                    </button>
-                                </div>
-                            `;
-                        } else {
-                            formContainer.innerHTML = `
-                                <div class="rounded-xl shadow-2xl bg-white/80 backdrop-blur-sm">
-                                    <div class="p-4 text-center pb-8">
-                                        <h2 class="text-2xl font-bold text-slate-900 flex items-center justify-center gap-3">
-                                            ${icons.Calendar}
-                                            Book Your Private Viewing
-                                        </h2>
-                                    </div>
-                                    <div class="p-8">
-                                        <form id="contact-form-inner" class="space-y-6">
-                                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                                <div class="space-y-2">
-                                                    <label for="name" class="flex items-center gap-2 text-slate-700 font-medium">${icons.User}Full Name</label>
-                                                    <input type="text" id="name" name="name" placeholder="Enter your full name" required class="h-12 border-slate-200 focus:border-emerald-400 focus:ring-emerald-400 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 w-full" />
-                                                </div>
-                                                <div class="space-y-2">
-                                                    <label for="email" class="flex items-center gap-2 text-slate-700 font-medium">${icons.Mail}Email Address</label>
-                                                    <input type="email" id="email" name="email" placeholder="Enter your email" required class="h-12 border-slate-200 focus:border-emerald-400 focus:ring-emerald-400 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 w-full" />
-                                                </div>
-                                            </div>
-                                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                                <div class="space-y-2">
-                                                    <label for="phone" class="flex items-center gap-2 text-slate-700 font-medium">${icons.Phone}Phone Number</label>
-                                                    <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required class="h-12 border-slate-200 focus:border-emerald-400 focus:ring-emerald-400 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 w-full" />
-                                                </div>
-                                                <div class="space-y-2">
-                                                    <label for="viewing_date" class="flex items-center gap-2 text-slate-700 font-medium">${icons.Calendar}Preferred Viewing Date</label>
-                                                    <input type="date" id="viewing_date" name="viewing_date" min="${new Date().toISOString().split('T')[0]}" class="h-12 border-slate-200 focus:border-emerald-400 focus:ring-emerald-400 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 w-full" />
-                                                </div>
-                                            </div>
-                                            <div class="space-y-2">
-                                                <label for="message" class="flex items-center gap-2 text-slate-700 font-medium">${icons.MessageSquare}Additional Message (Optional)</label>
-                                                <textarea id="message" name="message" placeholder="Tell us about your requirements or any questions you have..." rows="4" class="border-slate-200 focus:border-emerald-400 focus:ring-emerald-400 resize-none px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 w-full"></textarea>
-                                            </div>
-                                            <button type="submit" id="submit-btn" class="w-full h-14 bg-gradient-to-r from-emerald-600 to-emerald-700 hover:from-emerald-700 hover:to-emerald-800 text-white font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] px-4 py-2 rounded-lg font-medium">
-                                                ${icons.Calendar}Schedule My Viewing
-                                            </button>
-                                        </form>
-                                    </div>
-                                </div>
-                            `;
-                            document.getElementById('contact-form-inner').onsubmit = async (e) => {
-                                e.preventDefault();
-                                const submitBtn = document.getElementById('submit-btn');
-                                submitBtn.disabled = true;
-                                submitBtn.innerHTML = `${icons.Loader2} Scheduling Your Viewing...`;
-
-                                const formData = {
-                                    name: e.target.name.value,
-                                    email: e.target.email.value,
-                                    phone: e.target.phone.value,
-                                    message: e.target.message.value,
-                                    preferred_viewing_date: e.target.viewing_date.value,
-                                    property_id: featuredProperty.id || ""
-                                };
-
-                                try {
-                                    await Contact.create(formData);
-                                    isSubmitted = true;
-                                    renderForm();
-                                } catch (error) {
-                                    console.error("Error submitting contact form:", error);
-                                } finally {
-                                    submitBtn.disabled = false;
-                                }
-                            };
-                        }
-                    }
-                };
-
-                // The main function to run on page load
-                const main = async () => {
-                    await authAndFetch();
-                    const properties = await Property.filter({ is_featured: true }, "-created_at", 1);
-                    let prop = properties.length > 0 ? properties[0] : null;
-
-                    if (!prop) {
-                        const allProperties = await Property.list("-created_at", 1);
-                        prop = allProperties.length > 0 ? allProperties[0] : null;
-                    }
-
-                    setFeaturedProperty(prop);
-                    setIsLoading(false);
-                    renderForm();
-                };
-
-                main();
-            }
-        };
-
-        window.onload = () => {
-            renderApp();
-        };
-
-    </script>
+  <script src="script.js" defer></script>
 </body>
 </html>
